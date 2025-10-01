@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Produtos - Auto Barros Acessórios</title>
+<meta name="description" content="Catálogo completo de produtos Auto Barros - Alternadores, motores de arranque, componentes e iluminação automotiva.">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<link href="assets/css/catalogo.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER INÍCIO -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +351 227 419 201</span>
+                    <span><i class="fas fa-envelope"></i> geral@autobarros-acessorios.pt</span>
+                    <span><i class="fas fa-clock"></i> Seg-Sex: 9:00-12:30 | 14:30-19:00</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/autobarrosacessorios/" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="assets/images/team/ABA_logo.png" alt="Auto Barros Logo" class="logo">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li><a href="catalogo.html" class="nav-link active">Catálogo</a></li>
+                    <li><a href="sobre.html" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="index.html#contactos" class="nav-link">Contactos</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section do Catálogo -->
+    <section class="catalog-hero-simple">
+        <div class="container">
+            <div class="catalog-hero-content-simple">
+                <div class="breadcrumb">
+                    <a href="index.html">Início</a>
+                    <span>/</span>
+                    <span>Catálogo de Produtos</span>
+                </div>
+                <div class="catalog-hero-text">
+                    <span class="hero-badge-simple">Mais de 6000 artigos</span>
+                    <h1 class="catalog-hero-title">Catálogo de Produtos</h1>
+                    <p class="catalog-hero-subtitle">
+                        Explore as nossas famílias de produtos e encontre exatamente o que precisa.<br>
+                        Alternadores, motores de arranque e muito mais com 80% em stock.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo com Sidebar -->
+    <section class="catalog-section" style="padding: 2rem 0;">
+        <div class="container">
+            
+
+            
+            <div class="catalog-layout">
+                <!-- Sidebar de Famílias -->
+                <div class="catalog-sidebar">
+                    <div class="sidebar-header">
+                        <h3>Famílias de Produtos</h3>
+                    </div>
+                    <div class="families-list" id="families-list">
+                        <!-- Famílias serão carregadas dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Painel de Produtos -->
+                <div class="catalog-main">
+                    <div class="catalog-header">
+                        <div class="catalog-header-left">
+                            <h2 class="section-title" id="catalog-title">Catálogo por Família</h2>
+                            <div class="catalog-info" id="catalog-info">
+                                <span class="product-count">A carregar produtos...</span>
+                            </div>
+                        </div>
+                        <div class="catalog-header-right">
+                            <div class="catalog-search-inline">
+                                <div class="search-input-group-inline">
+                                    <i class="fas fa-search search-icon-inline"></i>
+                                    <input type="text" id="catalog-search-input" class="search-input-inline" placeholder="Pesquisar produtos..." maxlength="50">
+                                    <button type="button" id="catalog-clear-search" class="clear-search-btn-inline" style="display: none;" title="Limpar pesquisa">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button type="button" id="catalog-search-btn" class="search-btn-inline" title="Pesquisar">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="catalog-grid" id="catalog-marca-1000" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Product Stats -->
+    <section class="product-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <div class="stat-number">+6000</div>
+                    <div class="stat-label">Artigos Diferentes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">Em Stock</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="stat-number">+100</div>
+                    <div class="stat-label">Fornecedores</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-number">39</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER INÍCIO -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section footer-brand-section">
+                <div class="footer-brand">
+                    <h3>AUTO BARROS - ACESSÓRIOS</h3>
+                    <p>Especialistas em material elétrico automóvel desde 1985. Com 39 anos de experiência, somos referência nacional em alternadores e motores de arranque, oferecendo mais de 6000 artigos diferentes com 80% em stock para disponibilidade imediata.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/autobarrosacessorios/" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="index.html#contactos">Contactos</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contactos</h4>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> R. Ernesto Gonçalves, 118/132/138, E.N. 1 Apartado 76, 4415-933 Seixezelo</p>
+                    <p><i class="fas fa-phone"></i> +351 227 419 201</p>
+                    <p><i class="fas fa-envelope"></i> geral@autobarros-acessorios.pt</p>
+                </div>
+                <div class="footer-schedule">
+                    <h5>Horários de Funcionamento</h5>
+                    <p><i class="fas fa-clock"></i> <strong>Segunda a Sexta:</strong> 9:00 - 12:30 | 14:30 - 19:00</p>
+                    <p><i class="fas fa-clock"></i> <strong>Sábado:</strong> 9:00 - 12:00</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2025 Auto Barros - Acessórios, Lda. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Modal Premium para Produtos do Catálogo -->
+    <div id="productModal" class="product-modal-premium">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-card">
+                <!-- Header Premium -->
+                <div class="modal-header-premium">
+                    <div class="modal-header-content">
+                        <button class="modal-close-premium" type="button" aria-label="Fechar Modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Conteúdo do Modal - Layout Direto -->
+                <!-- Seção da Imagem (Parte Superior) -->
+                <div class="modal-image-section-top">
+                            <div class="image-container-large">
+                                <img id="modalProductImage" 
+                                     src="" 
+                                     alt=""
+                                     class="product-image-large"
+                                     onerror="if (!this.classList.contains('img-error')) { this.classList.add('img-error'); this.src='http://autobarrossede.ddns.net/api/Image/Image/132924/'; }">
+                                <div class="image-overlay-zoom">
+                                    <button class="zoom-btn" id="imageZoomBtn">
+                                        <i class="fas fa-search-plus"></i>
+                                        <span>Ampliar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Seção de Informações (Parte Inferior) -->
+                        <div class="modal-info-section-bottom">
+                            <div class="product-header-complete">
+                                <h1 id="modalProductTitle" class="product-title-large">Nome do Produto</h1>
+                                
+                                <div class="product-details-grid">
+                                    <div id="modalProductReference" class="product-detail-item" style="display: none;">
+                                        <i class="fas fa-barcode"></i>
+                                        <span class="detail-label">Referência:</span>
+                                        <span class="ref-code detail-value"></span>
+                                    </div>
+                                    
+                                    <div id="modalProductBrand" class="product-detail-item" style="display: none;">
+                                        <i class="fas fa-industry"></i>
+                                        <span class="detail-label">Marca:</span>
+                                        <span class="detail-value"></span>
+                                    </div>
+                                    
+                                    <div id="modalProductModel" class="product-detail-item" style="display: none;">
+                                        <i class="fas fa-car"></i>
+                                        <span class="detail-label">Modelo:</span>
+                                        <span class="detail-value"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="modalProductDescription" class="product-description-complete" style="display: none;">
+                                <h3><i class="fas fa-info-circle"></i> Descrição Detalhada</h3>
+                                <p></p>
+                            </div>
+
+                            <!-- Ações de Contacto Simples -->
+                            <div class="modal-actions-simple">
+                                <button id="modalContactEmail" class="btn-contact-simple primary" type="button" onclick="redirectToContacts()">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Contactar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Zoom da Imagem com Z-index muito alto -->
+    <div id="imageZoomModal" class="image-zoom-modal">
+        <button class="zoom-close-btn" onclick="closeImageZoom()">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="zoomedImage" src="" alt="Imagem ampliada">
+    </div>
+
+    <!-- Link para CSS da API -->
+
+    <!-- <script src="assets/js/layout.js"></script> -->
+    <script src="assets/js/api-config.js"></script>
+    <script src="assets/js/api-integration.js"></script>
+    <script src="assets/js/catalog-manager.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <noscript style="color:red;">Ative o JavaScript para ver o menu e rodapé.</noscript>
+    </style>
+
+    <script>
+        // Sistema refatorado inicializa automaticamente
+        console.log('🗂️ Página do catálogo carregada - CatalogManager inicializará automaticamente');
+        // Verificar se API está acessível
+        Promise.all([
+            typeof urlMarcas !== 'undefined' ? fetch(urlMarcas).catch(() => null) : null,
+            typeof urlArtigosDestaque !== 'undefined' ? fetch(urlArtigosDestaque).catch(() => null) : null,
+            typeof urlArtigosPesquisa !== 'undefined' ? fetch(urlArtigosPesquisa + 'test').catch(() => null) : null
+        ].filter(Boolean)).then(responses => {
+            const working = responses.filter(r => r && r.ok);
+            console.log(`🌐 ${working.length}/3 endpoints da API acessíveis`);
+        });
+
+        // Função para redirecionar corretamente para a seção de contactos
+        function redirectToContacts() {
+            window.location.href = 'index.html#contactos';
+            // Aguardar um pouco e fazer scroll para garantir que a âncora funciona
+            setTimeout(() => {
+                if (window.location.pathname.includes('index.html') && window.location.hash === '#contactos') {
+                    const contactSection = document.getElementById('contactos');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>

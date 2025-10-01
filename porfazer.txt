@@ -1,0 +1,22 @@
+- Página Principal
+
+    -> Corrigir iamgem inicial
+    -> Corrigir modal dos destaques
+    -> Meter cards dos contactos consistentes
+
+- Catálogo
+
+    -> meter mais bonito a parte inicial
+    -> a parte dos produtos ser consistente com os cards da pagina inicial
+    -> meter filtração por pesqueisa
+    -> meter mais bonito essa parte
+    -> meter a ultima página para selecionar na paginação
+    -> meter os loads dos produtos consistentes e que estã oa aparecer vários
+    -> ao clicar na paginação, a pagina não fica no siito e se mexe
+
+- Sobre Nós
+
+    -> Conferir se a informação é real
+    -> Inserir iamgem na parte inicial
+    -> Meter mais bonito a parte com os numeros/valores
+    -> Talvez remover ou reformular a parte "As nossas instalações"

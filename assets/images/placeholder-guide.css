@@ -1,0 +1,85 @@
+/* Placeholder Images - Para Demonstração */
+
+/* 
+Para um website completo, substitua estas URLs por imagens reais:
+
+IMAGENS NECESSÁRIAS:
+===================
+
+1. Logo da empresa:
+   - assets/images/logo.png (200x80px)
+
+2. Imagens principais:
+   - assets/images/hero-alternator.jpg (800x600px)
+   - assets/images/car-engine.jpg (1200x800px)
+   - assets/images/company-building.jpg (800x600px)
+   - assets/images/company-history.jpg (600x400px)
+
+3. Produtos:
+   - assets/images/alternador.jpg (400x300px)
+   - assets/images/motor-arranque.jpg (400x300px)
+   - assets/images/componentes.jpg (400x300px)
+   - assets/images/iluminacao.jpg (400x300px)
+
+4. Equipa:
+   - assets/images/ricardo-barros.jpg (300x300px)
+
+5. Instalações:
+   - assets/images/sede-seixezelo.jpg (500x300px)
+   - assets/images/filial-porto.jpg (500x300px)
+   - assets/images/filial-lisboa.jpg (500x300px)
+
+6. Marcas (logos):
+   - assets/images/brands/bosch.png (150x75px)
+   - assets/images/brands/valeo.png (150x75px)
+   - assets/images/brands/denso.png (150x75px)
+   - assets/images/brands/magneti-marelli.png (150x75px)
+   - assets/images/brands/alanko.png (150x75px)
+   - assets/images/brands/zkw.png (150x75px)
+
+DICAS PARA AS IMAGENS:
+=====================
+
+1. Use formatos modernos (WebP quando possível)
+2. Otimize para web (compressão adequada)
+3. Mantenha proporções consistentes
+4. Use imagens de alta qualidade
+5. Considere imagens com boa iluminação
+6. Evite imagens muito escuras ou claras
+
+FERRAMENTAS RECOMENDADAS:
+========================
+
+- TinyPNG: Para compressão
+- Canva: Para criação/edição
+- Unsplash: Para imagens stock (se necessário)
+- Photoshop/GIMP: Para edição avançada
+
+*/
+
+/* Placeholder CSS para quando as imagens não estão disponíveis */
+img {
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+img::before {
+    content: "Imagem não encontrada";
+    position: absolute;
+}
+
+/* Remove placeholder quando imagem carrega */
+img[src]:not([src=""]) {
+    background: none;
+    border: none;
+}
+
+img[src]:not([src=""])::before {
+    content: none;
+}
