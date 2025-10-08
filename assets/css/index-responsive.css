@@ -1,0 +1,93 @@
+/* index-responsive.css
+   Homepage-specific responsive rules.
+   Scope: only applies when <body class="homepage"> is present.
+
+   Principles:
+   - Desktop primary (3-column products grid)
+   - Tablet fallback (2 columns)
+   - Mobile single column, header-top hidden, navbar hamburger
+   - Feature cards centered and visually consistent
+   - Contact cards same width/height in mobile
+*/
+
+body.homepage {
+  --container-max: 1200px;
+  --primary-color: #1a365d;
+}
+
+.homepage .container { max-width: var(--container-max); margin: 0 auto; padding: 0 1rem; box-sizing: border-box; }
+
+/* Header-top behaviour */
+.homepage .header-top { transition: all 0.2s ease; }
+@media (max-width: 480px) {
+  .homepage .header-top { display: none !important; }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .homepage .header-top { padding: 6px 0 !important; font-size: 0.8rem !important; }
+}
+
+/* Navbar: consistent mobile menu and logo sizing */
+.homepage .navbar .container { display:flex; align-items:center; justify-content:space-between; gap: 1rem; }
+.homepage .nav-toggle { display:none; }
+.homepage .nav-menu { display:flex; gap:2rem; align-items:center; }
+
+@media (max-width: 768px) {
+  .homepage .nav-toggle { display:flex; z-index:2200; }
+  .homepage .nav-menu { position: fixed; left:0; right:0; top: 6.2rem; background: #fff; flex-direction: column; padding: 1rem; transform: translateY(-110%); opacity: 0; visibility: hidden; transition: all 0.28s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+  .homepage .nav-menu.active { transform: translateY(0); opacity: 1; visibility: visible; }
+  .homepage .nav-menu li { width:100%; }
+  .homepage .nav-menu .nav-link { display:block; padding: 0.8rem 0; color:var(--primary-color); }
+  .homepage .logo { height:44px; }
+}
+
+/* Hero */
+.homepage .hero-original { padding: 6rem 0 4rem; min-height: 48vh; background-position: center; background-size: cover; }
+.homepage .hero-content-original { text-align:center; color:#fff; }
+.homepage .hero-title-main { font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing:0.06em; }
+.homepage .hero-subtitle-main { font-size: clamp(1rem, 2.2vw, 1.4rem); opacity:0.95; }
+
+@media (max-width: 768px) {
+  .homepage .hero-original { padding-top: 6.5rem; min-height: 36vh; }
+  .homepage .hero-title-main { font-size: 1.8rem; }
+}
+
+/* PRODUCTS GRID: desktop = 3 columns, large screens 4, tablet 2, mobile 1 */
+.homepage .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items:start; width:100%; margin: 0 auto; padding: 0 1rem; box-sizing:border-box; }
+
+@media (min-width: 1400px) { .homepage .products-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 1024px) { .homepage .products-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .homepage .products-grid { grid-template-columns: 1fr; gap:18px; } }
+
+/* Card visual balance - do not change layout flow, only sizing and padding */
+.homepage .product-card { display:block; min-height: 420px; border-radius: 18px; overflow:hidden; background:#fff; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+.homepage .product-card .product-image { height: 260px; overflow:hidden; }
+.homepage .product-card .product-image img { width:100%; height:100%; object-fit:cover; display:block; }
+.homepage .product-card .product-info { padding: 26px; display:block; }
+.homepage .product-card .product-name { margin-bottom: 14px; min-height:44px; }
+
+@media (max-width: 1024px) { .homepage .product-card { min-height: 360px; } .homepage .product-card .product-image { height:220px; } }
+@media (max-width: 768px) { .homepage .product-card { min-height: auto; } .homepage .product-card .product-image { height:200px; } .homepage .product-card .product-info { padding: 18px; } }
+
+/* FEATURES: grid and centered content */
+.homepage .features-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
+.homepage .feature-card { text-align:center; padding: 28px 18px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; }
+.homepage .feature-icon { width:64px; height:64px; margin-bottom:12px; display:flex; align-items:center; justify-content:center; border-radius:50%; }
+@media (max-width: 1024px) { .homepage .features-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 768px) { .homepage .features-grid { grid-template-columns: 1fr; } }
+
+/* CONTACTS: in mobile make cards equal height and width using grid */
+.homepage .contact-info { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+@media (max-width: 1024px) { .homepage .contact-info { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 768px) { .homepage .contact-info { grid-template-columns: 1fr; } }
+
+.homepage .contact-item { background:#fff; padding:16px; border-radius:10px; display:flex; gap:12px; align-items:flex-start; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+.homepage .contact-icon { flex:0 0 56px; display:flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; }
+.homepage .contact-details { flex:1; }
+
+/* FOOTER stacking on small screens */
+@media (max-width: 768px) { .homepage .footer .footer-content { display:grid; grid-template-columns:1fr; gap:20px; text-align:center; } }
+
+/* small utility to ensure grid children not shrinking in some browsers */
+.homepage .products-grid > * { min-width: 0; box-sizing: border-box; }
+
+/* End of homepage responsive */

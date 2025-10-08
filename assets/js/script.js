@@ -1400,6 +1400,43 @@ function performSearch(query) {
     console.log('Searching for:', query);
 }
 
+// Safety cleanup: remove any leftover link to index-responsive.css and
+// clear inline styles that may cause product cards to collapse.
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        // Remove <link> elements pointing to index-responsive.css (leftover from edits)
+        const links = document.querySelectorAll('link[rel="stylesheet"]');
+        links.forEach(l => {
+            if (l.href && l.href.includes('index-responsive.css')) {
+                l.parentNode.removeChild(l);
+                console.log('Removed leftover index-responsive.css link');
+            }
+        });
+
+        // Normalize inline styles inside products grid (if any JS added them)
+        const productGrid = document.querySelector('.products-grid');
+        if (productGrid) {
+            const items = productGrid.querySelectorAll('*');
+            items.forEach(el => {
+                // remove problematic inline width/height/transform styles
+                if (el.style) {
+                    ['width','minWidth','maxWidth','height','transform','flex','flexBasis'].forEach(prop => {
+                        if (el.style[prop]) {
+                            el.style[prop] = '';
+                        }
+                    });
+                }
+            });
+
+            // Force a small CSS class to the grid to ensure expected behaviour
+            productGrid.classList.add('products-grid-normalized');
+            console.log('Normalized product grid inline styles');
+        }
+    } catch (e) {
+        console.error('Cleanup script failed:', e);
+    }
+});
+
 // ===== INICIALIZAÇÃO GLOBAL =====
 
 console.log('AutoBarros - Website loaded successfully!');

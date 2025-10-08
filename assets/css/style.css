@@ -1191,6 +1191,16 @@ body.menu-open::before {
     padding: 0 20px;
 }
 
+/* Applied by runtime cleanup script to ensure grid behaves if inline styles were present */
+.products-grid-normalized {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 32px !important;
+    width: 100% !important;
+}
+
+.products-grid-normalized > * { min-width: 0 !important; box-sizing: border-box !important; }
+
 .featured-grid {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
