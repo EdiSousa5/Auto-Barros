@@ -825,14 +825,59 @@
 
         // Configurar funcionalidade de zoom na imagem do catálogo
         function setupCatalogImageZoom(modal, product) {
-            const imageContainer = modal.querySelector('.image-container-large');
+            // Verificar se estamos em mobile
+            const isMobile = window.innerWidth <= 768;
             
+            if (isMobile) {
+                // Em mobile, desabilitar completamente o zoom
+                const imageContainerLarge = modal.querySelector('.image-container-large');
+                const imageContainer = modal.querySelector('.image-container-premium');
+                
+                if (imageContainerLarge) {
+                    imageContainerLarge.style.cursor = 'default';
+                    imageContainerLarge.style.pointerEvents = 'none';
+                }
+                
+                if (imageContainer) {
+                    imageContainer.style.cursor = 'default';
+                    imageContainer.style.pointerEvents = 'none';
+                }
+                
+                return; // Sair da função para mobile
+            }
+            
+            // Configurar zoom para .image-container-large (novo modal layout) - apenas desktop
+            const imageContainerLarge = modal.querySelector('.image-container-large');
+            
+            if (imageContainerLarge) {
+                imageContainerLarge.addEventListener('click', () => {
+                    const imageSrc = getImageUrlFromArtigo(product);
+                    const productName = product.Descricao || 'Produto';
+                    showSimpleCatalogImageModal(imageSrc, productName);
+                });
+                imageContainerLarge.style.cursor = 'pointer';
+            }
+
+            // Configurar botão de zoom específico - apenas desktop
+            const zoomBtn = modal.querySelector('#imageZoomBtn');
+            if (zoomBtn) {
+                zoomBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const imageSrc = getImageUrlFromArtigo(product);
+                    const productName = product.Descricao || 'Produto';
+                    showSimpleCatalogImageModal(imageSrc, productName);
+                });
+            }
+
+            // Compatibilidade com layout antigo - apenas desktop
+            const imageContainer = modal.querySelector('.image-container-premium');
             if (imageContainer) {
                 imageContainer.addEventListener('click', () => {
                     const imageSrc = getImageUrlFromArtigo(product);
                     const productName = product.Descricao || 'Produto';
                     showSimpleCatalogImageModal(imageSrc, productName);
                 });
+                imageContainer.style.cursor = 'pointer';
             }
         }
 

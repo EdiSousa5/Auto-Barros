@@ -251,9 +251,9 @@ class HomepageManager {
         // Atualizar referência
         const referenceElement = document.getElementById('modalProductReference');
         if (productReference && referenceElement) {
-            referenceElement.style.display = 'flex';
-            const refCodeElement = referenceElement.querySelector('.ref-code');
-            if (refCodeElement) refCodeElement.textContent = productReference;
+            referenceElement.style.display = 'block';
+            const refValueElement = referenceElement.querySelector('.detail-value');
+            if (refValueElement) refValueElement.textContent = productReference;
         } else if (referenceElement) {
             referenceElement.style.display = 'none';
         }
@@ -261,7 +261,7 @@ class HomepageManager {
         // Atualizar marca
         const brandElement = document.getElementById('modalProductBrand');
         if (productBrand && brandElement) {
-            brandElement.style.display = 'flex';
+            brandElement.style.display = 'block';
             const brandValueElement = brandElement.querySelector('.detail-value');
             if (brandValueElement) brandValueElement.textContent = productBrand;
         } else if (brandElement) {
@@ -271,30 +271,26 @@ class HomepageManager {
         // Atualizar modelo
         const modelElement = document.getElementById('modalProductModel');
         if (productModel && modelElement) {
-            modelElement.style.display = 'flex';
+            modelElement.style.display = 'block';
             const modelValueElement = modelElement.querySelector('.detail-value');
             if (modelValueElement) modelValueElement.textContent = productModel;
         } else if (modelElement) {
             modelElement.style.display = 'none';
         }
 
-        // Atualizar descrição
+        // Atualizar descrição (esconder por enquanto)
         const descriptionElement = document.getElementById('modalProductDescription');
-        if (productDescription && descriptionElement) {
-            descriptionElement.style.display = 'block';
-            const descPElement = descriptionElement.querySelector('p');
-            if (descPElement) descPElement.textContent = productDescription;
-        } else if (descriptionElement) {
+        if (descriptionElement) {
             descriptionElement.style.display = 'none';
         }
-
+        
         console.log('✅ Modal atualizado com sucesso');
     }
 
     // Configurar event listeners do modal
     setupModalEvents(modal, product) {
         // Resetar scroll do modal para o topo
-        const modalBody = modal.querySelector('.modal-info-section-bottom');
+        const modalBody = modal.querySelector('.modal-info-section-premium');
         if (modalBody) {
             modalBody.scrollTop = 0;
         }
@@ -343,11 +339,12 @@ class HomepageManager {
         };
         document.addEventListener('keydown', handleEscape);
 
-        // Configurar botão de contacto único
-        const contactBtn = document.getElementById('modalContactEmail');
+        // Configurar botões de contacto
+        const contactEmailBtn = document.getElementById('modalContactEmail');
+        const contactPhoneBtn = document.getElementById('modalContactPhone');
         
-        if (contactBtn) {
-            contactBtn.onclick = () => {
+        if (contactEmailBtn) {
+            contactEmailBtn.onclick = () => {
                 // Fechar modal primeiro
                 closeModal();
                 // Aguardar animação de fechamento e navegar para contactos
@@ -359,6 +356,12 @@ class HomepageManager {
                 }, 600);
             };
         }
+
+        if (contactPhoneBtn) {
+            contactPhoneBtn.onclick = () => {
+                window.open('tel:+351227419201', '_self');
+            };
+        }
         
         // Configurar funcionalidade de zoom na imagem
         this.setupImageZoom(modal, product);
@@ -366,24 +369,69 @@ class HomepageManager {
 
     // Configurar funcionalidade de zoom na imagem (simplificada)
     setupImageZoom(modal, product) {
-        const imageContainer = modal.querySelector('.image-container-large');
+        // Verificar se estamos em mobile
+        const isMobile = window.innerWidth <= 768;
         
-        if (imageContainer) {
-            // Remover event listeners antigos clonando o elemento
-            const newImageContainer = imageContainer.cloneNode(true);
-            imageContainer.parentNode.replaceChild(newImageContainer, imageContainer);
+        if (isMobile) {
+            // Em mobile, desabilitar completamente o zoom
+            const imageContainerLarge = modal.querySelector('.image-container-large');
+            const imageContainer = modal.querySelector('.image-container-premium');
             
+            if (imageContainerLarge) {
+                imageContainerLarge.style.cursor = 'default';
+                imageContainerLarge.style.pointerEvents = 'none';
+            }
+            
+            if (imageContainer) {
+                imageContainer.style.cursor = 'default';
+                imageContainer.style.pointerEvents = 'none';
+            }
+            
+            return; // Sair da função para mobile
+        }
+        
+        // Configurar zoom para .image-container-large (novo modal layout) - apenas desktop
+        const imageContainerLarge = modal.querySelector('.image-container-large');
+        
+        if (imageContainerLarge) {
             const clickHandler = () => {
                 const imageElement = modal.querySelector('#modalProductImage');
                 const imageSrc = imageElement ? imageElement.src : this.getProductImageUrl(product);
                 const productName = product.Descricao || 'Produto';
-                console.log('🔍 Abrindo zoom da imagem:', productName);
+                console.log('Abrindo zoom da imagem:', productName);
                 this.showSimpleImageModal(imageSrc, productName);
             };
             
-            // Adicionar event listener ao novo elemento
-            newImageContainer.addEventListener('click', clickHandler);
-            newImageContainer.style.cursor = 'pointer';
+            imageContainerLarge.addEventListener('click', clickHandler);
+            imageContainerLarge.style.cursor = 'pointer';
+        }
+
+        // Configurar botão de zoom específico - apenas desktop
+        const zoomBtn = modal.querySelector('#imageZoomBtn');
+        if (zoomBtn) {
+            zoomBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const imageElement = modal.querySelector('#modalProductImage');
+                const imageSrc = imageElement ? imageElement.src : this.getProductImageUrl(product);
+                const productName = product.Descricao || 'Produto';
+                console.log('Abrindo zoom via botão:', productName);
+                this.showSimpleImageModal(imageSrc, productName);
+            });
+        }
+
+        // Compatibilidade com layout antigo - apenas desktop
+        const imageContainer = modal.querySelector('.image-container-premium');
+        if (imageContainer) {
+            const clickHandler = () => {
+                const imageElement = modal.querySelector('#modalProductImage');
+                const imageSrc = imageElement ? imageElement.src : this.getProductImageUrl(product);
+                const productName = product.Descricao || 'Produto';
+                console.log('Abrindo zoom da imagem:', productName);
+                this.showSimpleImageModal(imageSrc, productName);
+            };
+            
+            imageContainer.addEventListener('click', clickHandler);
+            imageContainer.style.cursor = 'pointer';
         }
     }
 
