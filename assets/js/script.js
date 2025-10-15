@@ -1284,58 +1284,62 @@ if ("serviceWorker" in navigator) {
 
 // Responsive Handler
 function initResponsiveHandler() {
-  let resizeTimer;
-
-  function handleResize() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      // Re-initialize components on resize
-      updateLayoutOnResize();
-    }, 250);
-  }
-
-  function updateLayoutOnResize() {
-    const width = window.innerWidth;
-
-    // Close mobile menu on desktop
-    if (width > 768) {
-      const navToggle = document.querySelector(".nav-toggle");
-      const navMenu = document.querySelector(".nav-menu");
-
-      if (navToggle && navMenu) {
-        navToggle.classList.remove("active");
-        navMenu.classList.remove("active");
-        document.body.classList.remove("menu-open");
-        document.body.style.overflow = "";
+  // FUNÇÃO COMPLETAMENTE DESATIVADA PARA EVITAR CONFLITOS
+  // CSS responsivo controla todos os layouts
+  console.log("ResponsiveHandler desativado - CSS controla layouts");
+  
+  // FORÇA BRUTA: Aplicar CSS via JavaScript para garantir funcionalidade
+  function forceResponsiveLayouts() {
+    if (window.innerWidth <= 768) {
+      // Produtos em destaque
+      const productsGrid = document.querySelector('#featured-products');
+      if (productsGrid) {
+        productsGrid.style.cssText = `
+          grid-template-columns: 1fr 1fr !important;
+          gap: 15px !important;
+          width: 100% !important;
+          padding: 0 10px !important;
+          box-sizing: border-box !important;
+          display: grid !important;
+        `;
+      }
+      
+      // Features
+      const featuresGrid = document.querySelector('.features .features-grid');
+      if (featuresGrid) {
+        featuresGrid.style.cssText = `
+          grid-template-columns: 1fr 1fr !important;
+          gap: 15px !important;
+          width: 100% !important;
+          padding: 0 10px !important;
+          box-sizing: border-box !important;
+          display: grid !important;
+        `;
+      }
+      
+      // Contactos
+      const contactInfo = document.querySelector('.contact-info');
+      if (contactInfo) {
+        contactInfo.style.cssText = `
+          grid-template-columns: 1fr 1fr !important;
+          gap: 15px !important;
+          width: 100% !important;
+          padding: 0 10px !important;
+          box-sizing: border-box !important;
+          display: grid !important;
+        `;
       }
     }
-
-    // Update grid layouts
-    updateGridLayouts(width);
   }
-
-  function updateGridLayouts(width) {
-    const grids = document.querySelectorAll(
-      ".products-grid, .features-grid, .catalog-grid"
-    );
-
-    grids.forEach((grid) => {
-      if (width <= 480) {
-        grid.style.gridTemplateColumns = "1fr";
-      } else if (width <= 768) {
-        grid.style.gridTemplateColumns = "repeat(2, 1fr)";
-      } else if (width <= 1024) {
-        grid.style.gridTemplateColumns = "repeat(3, 1fr)";
-      } else {
-        grid.style.gridTemplateColumns = "";
-      }
-    });
-  }
-
-  window.addEventListener("resize", handleResize);
-  window.addEventListener("orientationchange", () => {
-    setTimeout(handleResize, 100);
+  
+  // Executar imediatamente e em resize
+  forceResponsiveLayouts();
+  window.addEventListener('resize', forceResponsiveLayouts);
+  window.addEventListener('orientationchange', () => {
+    setTimeout(forceResponsiveLayouts, 100);
   });
+  
+  return;
 }
 
 // Touch Optimizations
@@ -1401,9 +1405,17 @@ function initMobileMenu() {
 
   // Função para abrir menu
   function openMobileMenu() {
+    // Salvar posição atual do scroll
+    const scrollY = window.scrollY;
+    document.body.dataset.scrollY = scrollY;
+    
     mobileMenuBtn.classList.add("active");
     mobileMenuOverlay.classList.add("active");
     document.body.classList.add("mobile-menu-open");
+    
+    // Manter posição de scroll
+    document.body.style.top = `-${scrollY}px`;
+    
     console.log("Menu hambúrguer aberto");
   }
 
@@ -1412,6 +1424,14 @@ function initMobileMenu() {
     mobileMenuBtn.classList.remove("active");
     mobileMenuOverlay.classList.remove("active");
     document.body.classList.remove("mobile-menu-open");
+    
+    // Restaurar posição de scroll
+    const scrollY = document.body.dataset.scrollY;
+    document.body.style.top = '';
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY));
+    }
+    
     console.log("Menu hambúrguer fechado");
   }
 
@@ -1441,20 +1461,43 @@ function initMobileMenu() {
 
   // Fechar menu ao clicar nos links
   mobileNavLinks.forEach((link) => {
-    link.addEventListener("click", function () {
+    link.addEventListener("click", function (e) {
       console.log("Link móvel clicado:", link.textContent);
       
-      // Adicionar classe ativa se for link da página atual
       const href = link.getAttribute('href');
-      if (href === 'index.html' || href === '#') {
-        mobileNavLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
       
-      // Fechar menu com pequeno delay para melhor UX
-      setTimeout(() => {
-        closeMobileMenu();
-      }, 150);
+      // Se for um link interno (âncora), fazer smooth scroll
+      if (href.includes('#')) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const targetId = href.split('#')[1];
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          // Fechar menu primeiro
+          closeMobileMenu();
+          
+          // Fazer smooth scroll após pequeno delay
+          setTimeout(() => {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }, 300);
+        }
+      } else {
+        // Para outros links, adicionar classe ativa e fechar menu
+        if (href === 'index.html' || href === '#') {
+          mobileNavLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+        
+        // Fechar menu com pequeno delay para melhor UX
+        setTimeout(() => {
+          closeMobileMenu();
+        }, 150);
+      }
     });
   });
 

@@ -9,6 +9,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/responsive-improvements.css" rel="stylesheet">
+    
+    <!-- CSS INLINE PARA FORÇAR RESPONSIVIDADE -->
+    <style>
+    @media (max-width: 768px) {
+        /* FORÇA PRODUTOS EM DESTAQUE */
+        #featured-products.products-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 15px !important;
+            width: 100% !important;
+            padding: 0 10px !important;
+            box-sizing: border-box !important;
+            display: grid !important;
+        }
+        
+        #featured-products .product-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* FORÇA FEATURES */
+        .features .features-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 15px !important;
+            width: 100% !important;
+            padding: 0 10px !important;
+            box-sizing: border-box !important;
+            display: grid !important;
+        }
+        
+        .features-grid .feature-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* FORÇA CONTACTOS */
+        .contact-content .contact-info {
+            grid-template-columns: 1fr 1fr !important;
+            width: 100% !important;
+            gap: 15px !important;
+            padding: 0 10px !important;
+            box-sizing: border-box !important;
+            display: grid !important;
+        }
+        
+        .contact-info .contact-item {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+    }
+    </style>
 </head>
 <body class="homepage">
     <!-- HEADER INÍCIO -->
