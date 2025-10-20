@@ -1067,6 +1067,109 @@
     }
 }
 
+/* ===== OVERIDES FINAIS: Ajustes gerais solicitados ===== */
+/* Produtos em destaque: garantir colunas legíveis e cartões com largura correta */
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 28px !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    align-items: start !important;
+    grid-auto-rows: auto !important; /* permite que o conteúdo dite altura, mas usamos min-height no cartão */
+}
+
+.products-grid .product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+.products-grid .product-card .product-image {
+    height: 240px !important; /* largura consistente visualmente */
+}
+
+.products-grid .product-card .product-info {
+    padding: 18px !important;
+}
+
+/* Features: tornar os cards mais compactos */
+.features .features-grid .feature-card,
+.features-grid .feature-card {
+    padding: 18px 12px !important;
+    min-height: 150px !important;
+}
+
+.features .feature-icon {
+    width: 56px !important;
+    height: 56px !important;
+    font-size: 1.4rem !important;
+    margin-bottom: 12px !important;
+}
+
+.features .feature-card h3 {
+    font-size: 1.05rem !important;
+}
+
+/* About-founder: versão mais compacta (desktop e mobile) */
+.about-founder {
+    padding: 10px !important;
+    margin: 12px 0 !important;
+}
+
+.about-founder .founder-info {
+    padding: 8px 6px !important;
+    text-align: left !important;
+}
+
+.about-text p {
+    font-size: 0.98rem !important;
+    line-height: 1.45 !important;
+}
+
+/* Brands container: reduzir padding vertical (override pedido) */
+.brands-container {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+}
+
+/* Contactos: forçar cards com mesma altura/width */
+.contact-info {
+    display: grid !important;
+    gap: 20px !important;
+    grid-auto-rows: 1fr !important; /* força colunas a terem a mesma altura */
+}
+
+.contact-info .contact-item {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Mobile menu list: reduzir um pouco o padding (ficou muito pequeno segundo pedido) */
+.mobile-menu-list {
+    list-style: none !important;
+    padding: 24px 0 !important; /* aumentar verticalmente para respirar */
+}
+
+.mobile-menu-list .mobile-nav-link {
+    padding: 14px 22px !important; /* espaço interno consistente */
+}
+
+/* Segurança: garantir que grids não encolhem demais */
+.products-grid > *,
+.features-grid > * {
+    min-width: 0 !important;
+}
+
+/* Fim dos overrides finais */
+
 @media (min-width: 769px) and (max-width: 1024px) {
     /* Header-top menor em tablets */
     .header-top {
@@ -2514,5 +2617,392 @@
         box-sizing: border-box !important;
         min-height: 200px !important;
         margin: 0 !important;
+    }
+}
+
+/* ===== CORREÇÕES SOLICITADAS PELO UTILIZADOR - PRIORIDADE MÁXIMA ===== */
+
+/* 1. PRODUTOS EM DESTAQUE: Cards estragados com width muito pequeno */
+/* Forçar grid correto e largura adequada dos cards */
+@media (max-width: 768px) {
+    .products-grid,
+    #featured-products {
+        grid-template-columns: 1fr 1fr !important; /* 2 colunas no mobile como pedido */
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+    }
+    
+    .product-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+    
+    .product-image {
+        height: 180px !important; /* Reduzir altura para 2 colunas funcionarem bem */
+    }
+    
+    .product-info {
+        padding: 12px !important;
+    }
+    
+    .product-name {
+        font-size: 0.9rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 8px !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .products-grid,
+    #featured-products {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+        gap: 30px !important;
+        max-width: 1400px !important;
+        margin: 0 auto !important;
+    }
+    
+    .product-card {
+        width: 100% !important;
+    }
+}
+
+/* 2. FEATURES: Conteúdo mais pequeno */
+@media (max-width: 768px) {
+    .features {
+        padding: 40px 0 !important;
+    }
+    
+    .features-grid {
+        gap: 12px !important;
+        padding: 0 10px !important;
+    }
+    
+    .feature-card {
+        padding: 16px 12px !important;
+        min-height: 140px !important;
+    }
+    
+    .feature-icon {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .feature-card h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .feature-card p {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+}
+
+/* 3. ABOUT-FOUNDER: Mais pequeno */
+.about-founder {
+    padding: 8px 12px !important;
+    margin: 15px 0 !important;
+}
+
+.founder-info h4 {
+    font-size: 1rem !important;
+    margin-bottom: 4px !important;
+}
+
+.founder-info span {
+    font-size: 0.85rem !important;
+}
+
+/* 4. BRANDS-CONTAINER: Diminuir padding de cima e baixo */
+.brands-container {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* 5. CONTACTOS: Todos os cards com mesmo tamanho (altura e largura) */
+@media (max-width: 768px) {
+    .contact-info {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px !important;
+        grid-auto-rows: 1fr !important; /* Mesma altura */
+    }
+    
+    .contact-item {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 200px !important;
+        max-height: 200px !important; /* Altura fixa para todos serem iguais */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 15px 10px !important;
+    }
+    
+    .contact-icon {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 10px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .contact-details {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+    
+    .contact-details h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .contact-details p {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .contact-info {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 20px !important;
+        grid-auto-rows: 1fr !important; /* Mesma altura */
+    }
+    
+    .contact-item {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 240px !important;
+        max-height: 240px !important; /* Altura fixa para todos serem iguais */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    .contact-icon {
+        flex-shrink: 0 !important;
+    }
+    
+    .contact-details {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+}
+
+/* 6. MOBILE-MENU-LIST: Diminuir muito o padding */
+.mobile-menu-list {
+    padding: 10px 0 !important; /* Muito reduzido */
+}
+
+.mobile-nav-link {
+    padding: 10px 20px !important; /* Padding interno também reduzido */
+}
+
+/* ===== OVERRIDE FINAL COM MÁXIMA ESPECIFICIDADE - PRODUTOS E CONTACTOS ===== */
+/* IMPORTANTE: Estas regras sobrepõem TUDO para corrigir os problemas reportados */
+
+/* PRODUTOS EM DESTAQUE: Forçar 2 colunas no mobile com tamanho adequado */
+@media screen and (max-width: 768px) {
+    body .products-grid,
+    body #featured-products,
+    body.homepage .products-grid,
+    body.homepage #featured-products,
+    section .products-grid,
+    section#produtos .products-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+        box-sizing: border-box !important;
+        justify-items: stretch !important;
+        align-items: start !important;
+    }
+    
+    body .products-grid .product-card,
+    body #featured-products .product-card,
+    body.homepage .product-card,
+    section .product-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+    }
+    
+    body .product-card .product-image,
+    body #featured-products .product-card .product-image {
+        height: 200px !important;
+        width: 100% !important;
+        flex-shrink: 0 !important;
+    }
+    
+    body .product-card .product-info,
+    body #featured-products .product-card .product-info {
+        padding: 14px 12px !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+    }
+    
+    body .product-card .product-name,
+    body #featured-products .product-card .product-name {
+        font-size: 0.95rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 10px !important;
+        font-weight: 600 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+    
+    body .product-card .product-meta,
+    body #featured-products .product-card .product-meta {
+        gap: 8px !important;
+        margin-top: auto !important;
+    }
+    
+    body .product-card .product-reference,
+    body .product-card .product-brand,
+    body .product-card .product-model {
+        font-size: 0.75rem !important;
+        padding: 7px 12px !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    /* Garantir que badge fica visível */
+    body .product-badge,
+    body #featured-products .product-badge {
+        top: 12px !important;
+        right: 12px !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* CONTACTOS: Permitir altura automática com tudo centrado */
+@media screen and (max-width: 768px) {
+    body .contact-info,
+    body.homepage .contact-info,
+    section#contactos .contact-info {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px !important;
+        grid-auto-rows: minmax(200px, auto) !important; /* Mínimo 200px mas pode crescer */
+        align-items: stretch !important;
+    }
+    
+    body .contact-item,
+    body.homepage .contact-item,
+    section#contactos .contact-item {
+        width: 100% !important;
+        height: auto !important; /* Altura automática baseada no conteúdo */
+        min-height: 200px !important;
+        max-height: none !important; /* Remover limite máximo */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* Centrar verticalmente */
+        align-items: center !important; /* Centrar horizontalmente */
+        padding: 15px 10px !important;
+        box-sizing: border-box !important;
+        text-align: center !important; /* Forçar texto centrado */
+    }
+    
+    body .contact-icon,
+    body.homepage .contact-icon {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.3rem !important;
+        margin: 0 auto 10px auto !important; /* Centrar ícone */
+        flex-shrink: 0 !important;
+    }
+    
+    body .contact-details,
+    body.homepage .contact-details {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* Centrar verticalmente */
+        align-items: center !important; /* Centrar horizontalmente */
+        width: 100% !important;
+        overflow: visible !important; /* Permitir mostrar todo o texto */
+        text-align: center !important; /* Texto centrado */
+    }
+    
+    body .contact-details h3,
+    body.homepage .contact-details h3 {
+        font-size: 0.9rem !important;
+        margin-bottom: 6px !important;
+        line-height: 1.2 !important;
+        text-align: center !important; /* Título centrado */
+        width: 100% !important;
+    }
+    
+    body .contact-details p,
+    body.homepage .contact-details p {
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        white-space: normal !important; /* Permitir quebra de linha */
+        text-align: center !important; /* Texto centrado */
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    body .contact-info,
+    body.homepage .contact-info {
+        grid-auto-rows: minmax(240px, auto) !important; /* Mínimo 240px mas pode crescer */
+    }
+    
+    body .contact-item,
+    body.homepage .contact-item {
+        height: auto !important;
+        min-height: 240px !important;
+        max-height: none !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    
+    body .contact-details,
+    body.homepage .contact-details {
+        align-items: center !important;
+        text-align: center !important;
+    }
+    
+    body .contact-details h3,
+    body .contact-details p {
+        text-align: center !important;
+    }
+    
+    body .contact-details p {
+        font-size: 0.9rem !important;
     }
 }
