@@ -1291,17 +1291,62 @@ function initResponsiveHandler() {
   // FORÇA BRUTA: Aplicar CSS via JavaScript para garantir funcionalidade
   function forceResponsiveLayouts() {
     if (window.innerWidth <= 768) {
-      // Produtos em destaque
-      const productsGrid = document.querySelector('#featured-products');
-      if (productsGrid) {
-        productsGrid.style.cssText = `
-          grid-template-columns: 1fr 1fr !important;
+      // ========== CORREÇÃO DEFINITIVA: PRODUTOS EM DESTAQUE ==========
+      // HomepageManager cria: <div id="featured-products"><div class="products-grid featured-grid">CARDS</div></div>
+      
+      // 1. Container pai = BLOCK (não dividir)
+      const featuredContainer = document.querySelector('#featured-products');
+      if (featuredContainer) {
+        featuredContainer.style.cssText = `
+          display: block !important;
+          width: 100% !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        `;
+      }
+      
+      // 2. Grid interna .products-grid.featured-grid = 2 COLUNAS
+      const innerGrid = document.querySelector('div.products-grid.featured-grid');
+      
+      if (innerGrid) {
+        console.log('🎯 APLICANDO 2 COLUNAS em: div.products-grid.featured-grid');
+        console.log('📏 Largura da janela:', window.innerWidth);
+        console.log('📦 Grid encontrada:', innerGrid);
+        
+        // MÉTODO 1: Style inline
+        innerGrid.style.cssText = `
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
           gap: 15px !important;
           width: 100% !important;
+          max-width: 100% !important;
           padding: 0 10px !important;
           box-sizing: border-box !important;
-          display: grid !important;
+          margin: 0 auto !important;
         `;
+        
+        // MÉTODO 2: Atributo style direto (máxima prioridade) - COLUNAS IGUAIS
+        innerGrid.setAttribute('style', 
+          'display: grid !important; ' +
+          'grid-template-columns: repeat(2, minmax(0, 1fr)) !important; ' +
+          'grid-auto-columns: 1fr !important; ' +
+          'gap: 15px !important; ' +
+          'width: 100% !important; ' +
+          'padding: 0 10px !important; ' +
+          'box-sizing: border-box !important; ' +
+          'justify-items: stretch !important;'
+        );
+        
+        // Debug: verificar quantos cards há
+        const cards = innerGrid.querySelectorAll('.product-card');
+        console.log(`📦 ${cards.length} cards encontrados na grid`);
+        
+        // Debug: verificar computed style
+        const computedStyle = window.getComputedStyle(innerGrid);
+        console.log('🎨 Grid template columns atual:', computedStyle.gridTemplateColumns);
+        console.log('🎨 Display atual:', computedStyle.display);
+      } else {
+        console.log('⚠️ div.products-grid.featured-grid NÃO encontrada - aguardando carregamento...');
       }
       
       // Features
@@ -1338,6 +1383,33 @@ function initResponsiveHandler() {
   window.addEventListener('orientationchange', () => {
     setTimeout(forceResponsiveLayouts, 100);
   });
+  
+  // Observador para quando o HomepageManager adicionar a grid
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length) {
+        mutation.addedNodes.forEach((node) => {
+          // Se adicionou a grid .products-grid.featured-grid
+          if (node.classList && node.classList.contains('products-grid') && node.classList.contains('featured-grid')) {
+            console.log('🔄 Grid featured-grid detectada! Aplicando 2 colunas...');
+            setTimeout(forceResponsiveLayouts, 50);
+          }
+          // Ou se adicionou dentro de #featured-products
+          if (node.querySelector && node.querySelector('.products-grid.featured-grid')) {
+            console.log('🔄 Grid featured-grid detectada via querySelector! Aplicando 2 colunas...');
+            setTimeout(forceResponsiveLayouts, 50);
+          }
+        });
+      }
+    });
+  });
+  
+  // Observar mudanças no #featured-products
+  const featuredContainer = document.querySelector('#featured-products');
+  if (featuredContainer) {
+    observer.observe(featuredContainer, { childList: true, subtree: true });
+    console.log('👁️ Observador ativado em #featured-products');
+  }
   
   return;
 }

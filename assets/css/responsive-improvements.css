@@ -1067,6 +1067,43 @@
     }
 }
 
+/* ===== HEADER-TOP COMPACTO (GLOBAL) ===== */
+/* Reduzir altura e espaçamento do header-top em todas as resoluções (não afeta mobile pois está oculto) */
+.header-top {
+    padding: 6px 0 !important;
+    font-size: 0.85rem !important;
+    line-height: 1.2 !important;
+}
+
+.header-top .container {
+    gap: 10px !important;
+}
+
+.header-top .contact-info {
+    gap: 12px !important;
+}
+
+.header-top .contact-info span {
+    font-size: 0.85rem !important;
+}
+
+.header-top .contact-info i {
+    font-size: 0.8rem !important;
+}
+
+.header-top .social-links a {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1rem !important;
+}
+
+/* Ajustar offset do menu mobile (já que o header-top está oculto em mobile) */
+@media (max-width: 768px) {
+    .nav-menu {
+        top: 70px !important; /* altura da navbar */
+    }
+}
+
 /* ===== OVERIDES FINAIS: Ajustes gerais solicitados ===== */
 /* Produtos em destaque: garantir colunas legíveis e cartões com largura correta */
 .products-grid {
@@ -1169,6 +1206,32 @@
 }
 
 /* Fim dos overrides finais */
+
+/* ===== CORREÇÃO DIRETA: GRID DE PRODUTOS EM DESTAQUE NO MOBILE ===== */
+/* O container #featured-products possui um wrapper interno .products-grid/.featured-grid.
+   Forçamos esse wrapper (filho) a 2 colunas no mobile para evitar que ambas colunas
+   caiam numa única coluna. */
+@media (max-width: 768px) {
+    .homepage #featured-products > .products-grid,
+    #featured-products > .products-grid,
+    #featured-products .products-grid.featured-grid,
+    .homepage #featured-products .products-grid.featured-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px !important;
+        width: 100% !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    .homepage #featured-products .products-grid .product-card,
+    #featured-products .products-grid .product-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+    }
+}
 
 @media (min-width: 769px) and (max-width: 1024px) {
     /* Header-top menor em tablets */
@@ -2558,20 +2621,32 @@
 
 /* ===== CORREÇÕES FINAIS - MÁXIMA PRIORIDADE ===== */
 @media (max-width: 768px) {
-    /* PRODUTOS EM DESTAQUE - SELETORES ESPECÍFICOS */
-    #featured-products.products-grid,
-    div#featured-products,
-    .products-grid#featured-products {
-        grid-template-columns: 1fr 1fr !important;
-        gap: 15px !important;
+    /* PRODUTOS EM DESTAQUE - CORREÇÃO DEFINITIVA */
+    /* HomepageManager cria: <div id="featured-products"><div class="products-grid featured-grid">CARDS</div></div> */
+    
+    /* Container pai = BLOCK (não dividir) */
+    #featured-products {
+        display: block !important;
         width: 100% !important;
-        padding: 0 10px !important;
-        box-sizing: border-box !important;
-        display: grid !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
     
-    #featured-products .product-card,
-    .products-grid .product-card {
+    /* Grid interna = 2 COLUNAS */
+    div.products-grid.featured-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Cards diretos da grid */
+    div.products-grid.featured-grid > .product-card,
+    div.products-grid.featured-grid > div.product-card {
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
@@ -2871,6 +2946,7 @@
         margin-bottom: 10px !important;
         font-weight: 600 !important;
         display: -webkit-box !important;
+        line-clamp: 2 !important;
         -webkit-line-clamp: 2 !important;
         -webkit-box-orient: vertical !important;
         overflow: hidden !important;
@@ -3004,5 +3080,51 @@
     
     body .contact-details p {
         font-size: 0.9rem !important;
+    }
+}
+
+/* ========== CORREÇÃO ULTRA AGRESSIVA: PRODUTOS EM DESTAQUE 2 COLUNAS IGUAIS ========== */
+/* Esta é a ÚLTIMA palavra - sobrescreve TUDO */
+@media screen and (max-width: 768px) {
+    /* Forçar a grid interna a ter 2 colunas EXATAMENTE IGUAIS - MÁXIMA PRIORIDADE */
+    body.homepage div.products-grid.featured-grid,
+    body div.products-grid.featured-grid,
+    html body.homepage #featured-products div.products-grid.featured-grid,
+    html body #featured-products div.products-grid.featured-grid,
+    .homepage div.products-grid.featured-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        grid-auto-columns: 1fr !important;
+        grid-template-rows: auto !important;
+        grid-auto-rows: auto !important;
+        gap: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        justify-items: stretch !important;
+        align-items: start !important;
+    }
+    
+    /* Cards - largura EXATAMENTE igual em cada coluna */
+    body.homepage div.products-grid.featured-grid > div.product-card,
+    body div.products-grid.featured-grid > div.product-card,
+    html body #featured-products div.products-grid.featured-grid > div.product-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        grid-column: span 1 !important;
+    }
+    
+    /* Garantir que o container pai NÃO é grid */
+    body.homepage #featured-products,
+    body #featured-products {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
     }
 }
