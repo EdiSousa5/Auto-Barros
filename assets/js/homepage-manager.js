@@ -131,6 +131,10 @@ class HomepageManager {
                         ${productBrand ? `<div class="product-brand">Marca: ${productBrand}</div>` : ''}
                         ${productModel ? `<div class="product-model">Modelo: ${productModel}</div>` : ''}
                     </div>
+                    <button class="btn-ver-mais" data-product-id="${product.Artigo}">
+                        <i class="fas fa-info-circle"></i>
+                        Ver Mais
+                    </button>
                 </div>
             </div>
         `;
@@ -174,7 +178,7 @@ class HomepageManager {
             // Event listener para clicar em qualquer parte do card
             card.addEventListener('click', (e) => {
                 // Prevenir propagação se o clique for no botão (evitar duplo clique)
-                if (e.target.closest('.btn-view-product')) {
+                if (e.target.closest('.btn-view-product') || e.target.closest('.btn-ver-mais')) {
                     e.stopPropagation();
                     return;
                 }
@@ -185,6 +189,15 @@ class HomepageManager {
 
         // Manter os event listeners dos botões para compatibilidade
         document.querySelectorAll('.btn-view-product').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevenir duplo clique
+                const productId = btn.dataset.productId;
+                this.showProductModal(productId);
+            });
+        });
+
+        // Event listeners para o botão Ver Mais
+        document.querySelectorAll('.btn-ver-mais').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation(); // Prevenir duplo clique
                 const productId = btn.dataset.productId;

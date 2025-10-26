@@ -11,7 +11,7 @@
 <link href="assets/css/catalogo.css" rel="stylesheet">
 <link href="assets/css/responsive-improvements.css" rel="stylesheet">
 </head>
-<body>
+<body class="homepage">
 
     <!-- HEADER INÍCIO -->
     <header class="header">
@@ -34,16 +34,63 @@
                 <div class="nav-brand">
                     <img src="assets/images/team/ABA_logo.png" alt="Auto Barros Logo" class="logo">
                 </div>
-                <ul class="nav-menu">
+                
+                <!-- Menu Desktop -->
+                <ul class="nav-menu desktop-menu">
                     <li><a href="index.html" class="nav-link">Início</a></li>
                     <li><a href="catalogo.html" class="nav-link active">Catálogo</a></li>
                     <li><a href="sobre.html" class="nav-link">Sobre Nós</a></li>
                     <li><a href="index.html#contactos" class="nav-link">Contactos</a></li>
                 </ul>
-                <div class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                
+                <!-- Botão Menu Hambúrguer (apenas mobile) -->
+                <button class="mobile-menu-btn" type="button" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                
+                <!-- Menu Mobile Overlay -->
+                <div class="mobile-menu-overlay">
+                    <nav class="mobile-menu">
+                        <div class="mobile-menu-header">
+                            <div class="mobile-logo-wrapper">
+                                <img src="assets/images/team/ABA_logo.png" alt="Auto Barros" class="mobile-logo">
+                            </div>
+                            <button class="mobile-menu-close" aria-label="Fechar Menu" title="Fechar Menu">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <ul class="mobile-menu-list">
+                            <li><a href="index.html" class="mobile-nav-link">
+                                <i class="fas fa-home"></i>
+                                <span>Início</span>
+                            </a></li>
+                            <li><a href="catalogo.html" class="mobile-nav-link">
+                                <i class="fas fa-box"></i>
+                                <span>Catálogo</span>
+                            </a></li>
+                            <li><a href="sobre.html" class="mobile-nav-link">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Sobre Nós</span>
+                            </a></li>
+                            <li><a href="index.html#contactos" class="mobile-nav-link">
+                                <i class="fas fa-envelope"></i>
+                                <span>Contactos</span>
+                            </a></li>
+                        </ul>
+                        <div class="mobile-menu-footer">
+                            <div class="mobile-contact-info">
+                                <p><i class="fas fa-phone"></i> +351 227 419 201</p>
+                                <p><i class="fas fa-envelope"></i> geral@autobarros-acessorios.pt</p>
+                            </div>
+                            <div class="mobile-social">
+                                <a href="https://www.facebook.com/autobarrosacessorios/" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </nav>
@@ -52,13 +99,13 @@
     <!-- Hero Section do Catálogo -->
     <section class="catalog-hero-simple">
         <div class="container">
-            <div class="catalog-hero-content-simple">
+            <div class="hero-content-simple">
                 <div class="breadcrumb">
                     <a href="index.html">Início</a>
                     <span>/</span>
                     <span>Catálogo de Produtos</span>
                 </div>
-                <div class="catalog-hero-text">
+                <div class="hero-text-content">
                     <span class="hero-badge-simple">Mais de 6000 artigos</span>
                     <h1 class="catalog-hero-title">Catálogo de Produtos</h1>
                     <p class="catalog-hero-subtitle">
@@ -178,11 +225,22 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Contactos</h4>
+                <h4>Contacto & Horários</h4>
                 <div class="footer-contact">
-                    <p><i class="fas fa-map-marker-alt"></i> R. Ernesto Gonçalves, 118/132/138, E.N. 1 Apartado 76, 4415-933 Seixezelo</p>
-                    <p><i class="fas fa-phone"></i> +351 227 419 201</p>
-                    <p><i class="fas fa-envelope"></i> geral@autobarros-acessorios.pt</p>
+                    <div class="contact-group">
+                        <h5><i class="fas fa-map-marker-alt"></i> Morada</h5>
+                        <p>R. Ernesto Gonçalves, 118/132/138 E.N. 1<br>
+                        Apartado 76 - 4415-933 Seixezelo</p>
+                    </div>
+                    <div class="contact-group">
+                        <h5><i class="fas fa-phone"></i> Telefones</h5>
+                        <p>+351 227 419 200<br>
+                        +351 227 419 201</p>
+                    </div>
+                    <div class="contact-group">
+                        <h5><i class="fas fa-envelope"></i> Email</h5>
+                        <p>geral@autobarros-acessorios.pt</p>
+                    </div>
                 </div>
                 <div class="footer-schedule">
                     <h5>Horários de Funcionamento</h5>
@@ -194,6 +252,9 @@
         <div class="footer-bottom">
             <div class="footer-bottom-content">
                 <p>&copy; 2025 Auto Barros - Acessórios, Lda. Todos os direitos reservados.</p>
+                <div class="footer-certifications">
+                    <p>NIF: 123456789 | Autorização de Atividade Económica nº ABC123</p>
+                </div>
             </div>
         </div>
     </footer>
