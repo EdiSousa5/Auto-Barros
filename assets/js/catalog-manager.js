@@ -1422,3 +1422,75 @@
             }
         }, 100);
     }
+
+    // === FUNCIONALIDADE MOBILE DRAWER (ESTILO SPRINTER) ===
+    document.addEventListener('DOMContentLoaded', function() {
+        const filtersBtn = document.querySelector('.catalog-filters-btn');
+        const sortBtn = document.querySelector('.catalog-sort-btn');
+        const sidebar = document.querySelector('.catalog-sidebar');
+        const backdrop = document.querySelector('.catalog-sidebar-backdrop');
+        const closeBtn = document.querySelector('.sidebar-close-btn');
+
+        if (!filtersBtn || !sidebar || !backdrop) {
+            console.log('Elementos do drawer mobile não encontrados');
+            return;
+        }
+
+        // Abrir sidebar quando clicar no botão de filtros
+        filtersBtn.addEventListener('click', function() {
+            sidebar.classList.add('open');
+            backdrop.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll do body
+        });
+
+        // Fechar sidebar quando clicar no backdrop
+        backdrop.addEventListener('click', function() {
+            sidebar.classList.remove('open');
+            backdrop.classList.remove('show');
+            document.body.style.overflow = ''; // Restaurar scroll
+        });
+
+        // Fechar sidebar quando clicar no botão de fechar
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                sidebar.classList.remove('open');
+                backdrop.classList.remove('show');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Fechar sidebar quando clicar em uma família (no mobile)
+        if (window.innerWidth <= 768) {
+            const familiesList = document.getElementById('families-list');
+            if (familiesList) {
+                familiesList.addEventListener('click', function(e) {
+                    const familyItem = e.target.closest('.family-item');
+                    if (familyItem) {
+                        // Fechar drawer após selecionar família
+                        setTimeout(() => {
+                            sidebar.classList.remove('open');
+                            backdrop.classList.remove('show');
+                            document.body.style.overflow = '';
+                        }, 300);
+                    }
+                });
+            }
+        }
+
+        // Fechar com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                backdrop.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Botão de ordenação (placeholder - você pode implementar funcionalidade de ordenação)
+        if (sortBtn) {
+            sortBtn.addEventListener('click', function() {
+                alert('Funcionalidade de ordenação em desenvolvimento');
+                // Aqui você pode adicionar um dropdown ou modal para opções de ordenação
+            });
+        }
+    });
