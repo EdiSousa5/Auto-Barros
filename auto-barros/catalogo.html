@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Auto Barros - Acessórios</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7R41M3BDC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-H7R41M3BDC');
+    </script>
+    
+    <meta name="description" content="Explore o nosso catálogo completo de alternadores, motores de arranque e material elétrico automóvel. Mais de 6000 artigos disponíveis.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="catalog-fullpage-overlay">
+        <div class="simple-loading-container">
+            <div class="simple-loading-content">
+                <div class="simple-spinner"></div>
+                <h3>Auto Barros - Acessórios</h3>
+                <p>A carregar o catálogo...</p>
+                <div class="simple-progress">
+                    <div class="simple-progress-bar" id="loading-progress-bar"></div>
+                </div>
+                <div class="loading-status" id="loading-status">A inicializar...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Top -->
+    <div class="header-top text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="d-flex">
+                        <span><i class="fas fa-phone"></i> +351 227 419 201</span>
+                        <span><i class="fas fa-envelope"></i> geral@autobarros-acessorios.pt</span>
+                        <span><i class="fas fa-clock"></i> Seg-Sex: 9:00-12:30 | 14:30-19:00</span>
+                        <div class="social-icons-group">
+                            <a href="https://www.facebook.com/autobarrosacessorios/" target="_blank" class="text-white text-decoration-none">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/autobarros.acessorios/" target="_blank" class="text-white text-decoration-none">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/team/ABA_logo.png" alt="Auto Barros Logo" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contactos">Contactos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header bg-primary text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span class="badge bg-light text-primary mb-3 px-3 py-2" id="catalog-badge">Mais de 6000 artigos</span>
+                    <h1 class="display-4 fw-bold mb-3" id="catalog-main-title">Catálogo de Produtos</h1>
+                    <p class="lead" id="catalog-subtitle">Explore a nossa vasta gama de produtos em stock</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section py-4 py-md-5">
+        <div class="container-fluid px-2 px-md-3">
+            <!-- Catalog Title Mobile - Aparece só em mobile, ANTES dos filtros -->
+            <div class="d-lg-none mb-3 px-2">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <h3 class="catalog-title fw-bold mb-2 mb-md-0">Artigos em Destaque</h3>
+                    <span class="badge bg-primary catalog-badge-mobile">A carregar...</span>
+                </div>
+            </div>
+            
+            <!-- Mobile Filter Toolbar - Só aparece em mobile -->
+            <div class="mobile-filter-toolbar d-lg-none mb-3">
+                <div class="container-fluid px-2">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#mobileSearchCollapse">
+                                <i class="fas fa-search me-1"></i><span>Pesquisar</span>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#mobileFiltersCollapse">
+                                <i class="fas fa-filter me-1"></i><span>Filtros</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Search Collapse -->
+                <div class="collapse mt-2" id="mobileSearchCollapse">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-3">
+                            <h6 class="fw-bold mb-2"><i class="fas fa-search me-2"></i>Pesquisar</h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="search-products-mobile" placeholder="Pesquisar produtos..." aria-label="Pesquisar produtos">
+                                <button class="btn btn-primary search-btn-mobile" type="button" aria-label="Pesquisar">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted d-block mt-2">Mínimo 3 caracteres</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Filters Collapse -->
+                <div class="collapse mt-2" id="mobileFiltersCollapse">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white py-2">
+                            <h6 class="mb-0"><i class="fas fa-filter me-2"></i>Filtrar por Família</h6>
+                        </div>
+                        <div class="card-body p-0" style="max-height: 350px; overflow-y: auto;">
+                            <div id="families-list-mobile" class="list-group list-group-flush">
+                                <!-- Famílias serão carregadas via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Sidebar - Escondida em mobile -->
+                <div class="col-lg-3 col-md-4 mb-4 d-none d-lg-block">
+                    <!-- Search Box -->
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3"><i class="fas fa-search me-2"></i> Pesquisar</h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="search-products" placeholder="Pesquisar produtos...">
+                                <button class="btn btn-primary search-btn" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted d-block mt-2">Mínimo 3 caracteres</small>
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow-sm mt-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-filter me-2"></i> Filtrar por Família</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div id="families-list" class="list-group list-group-flush">
+                                <!-- Famílias serão carregadas via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="col-lg-9 col-md-8">
+                    <!-- Catalog Title Desktop - Escondido em mobile -->
+                    <div class="d-none d-lg-flex justify-content-between align-items-center mb-3">
+                        <h3 class="catalog-title fw-bold">Artigos em Destaque</h3>
+                        <span class="badge bg-primary catalog-badge-desktop">A carregar...</span>
+                    </div>
+
+                    <!-- Products Grid - 2 colunas em mobile, 2 em tablet pequeno, 3 em desktop, 4 em XL -->
+                    <div class="catalog-grid row row-cols-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-2 g-md-3 g-lg-4 px-2 px-md-0">
+                        <!-- Produtos serão carregados via JavaScript -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center catalog-pagination">
+                            <!-- Paginação será gerada via JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">AUTO BARROS - ACESSÓRIOS</h5>
+                    <p class="text-white-50">
+                        Especialistas em material elétrico automóvel desde 1985. Com mais de 40 anos de experiência, 
+                        somos referência nacional em alternadores e motores de arranque, oferecendo mais de 
+                        6000 artigos diferentes com 80% em stock para disponibilidade imediata.
+                    </p>
+                    <a href="https://www.facebook.com/autobarrosacessorios/" target="_blank" class="btn btn-outline-light btn-sm rounded-circle me-2">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/autobarros.acessorios/" target="_blank" class="btn btn-outline-light btn-sm rounded-circle me-2">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Início</a></li>
+                        <li class="mb-2"><a href="catalogo.html" class="text-white-50 text-decoration-none">Catálogo</a></li>
+                        <li class="mb-2"><a href="sobre.html" class="text-white-50 text-decoration-none">Sobre Nós</a></li>
+                        <li class="mb-2"><a href="index.html#contactos" class="text-white-50 text-decoration-none">Contactos</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Contacto & Horários</h5>
+                    <p class="text-white-50 mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        R. Ernesto Gonçalves, 118/132/138 E.N. 1<br>
+                        <span class="ms-4">4415-933 Seixezelo</span>
+                    </p>
+                    <p class="text-white-50 mb-2">
+                        <i class="fas fa-phone me-2"></i> +351 227 419 200 / 201
+                    </p>
+                    <p class="text-white-50 mb-3">
+                        <i class="fas fa-envelope me-2"></i> geral@autobarros-acessorios.pt
+                    </p>
+                    <p class="text-white-50 mb-0">
+                        <i class="fas fa-clock me-2"></i>
+                        <strong>Segunda a Sexta:</strong> 9:00 - 12:30 | 14:30 - 19:00
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4 bg-white opacity-25">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white-50 mb-0">&copy; 2025 Auto Barros - Acessórios, Lda. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle d-none" id="backToTop" style="width: 50px; height: 50px; z-index: 1000;">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Modal de Produto -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">Detalhes do Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-12 text-center">
+                            <img id="modalProductImage" src="" alt="" class="img-fluid rounded w-100" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="col-12">
+                            <h3 id="modalProductTitle" class="fw-bold mb-3 text-center">Nome do Produto</h3>
+                            <div id="modalProductReference" class="mb-2">
+                                <i class="fas fa-barcode text-primary me-2"></i>
+                                <strong>Referência:</strong> <span class="ref-code"></span>
+                            </div>
+                            <div id="modalProductBrand" class="mb-2">
+                                <i class="fas fa-industry text-primary me-2"></i>
+                                <strong>Marca:</strong> <span class="detail-value"></span>
+                            </div>
+                            <div id="modalProductModel" class="mb-3">
+                                <i class="fas fa-car text-primary me-2"></i>
+                                <strong>Modelo:</strong> <span class="detail-value"></span>
+                            </div>
+                            <div id="modalProductDescription" class="mb-4">
+                                <p></p>
+                            </div>
+                            <button id="modalContactEmail" class="btn btn-primary w-100">
+                                <i class="fas fa-envelope me-2"></i> Contactar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/catalog.js"></script>
+    <script src="assets/js/scroll.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
